@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Viewdata.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Viewdata.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.mobile.praktekmp2.Roomdata</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.recyclerview.widget.LinearLayoutManager</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.recyclerview.widget.RecyclerView</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.room.Room</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.util.Log</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.mobile.praktekmp2.Entity.Mahasiswa</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.mobile.praktekmp2.R</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">com.mobile.praktekmp2.Roomdata.Myapp.db</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Viewdata </span><span class="s0">extends </span><span class="s1">AppCompatActivity {</span>
+    <span class="s1">RecyclerView myrecycle</span><span class="s0">;</span>
+    <span class="s1">Recycleviewadapter myadapter</span><span class="s0">;</span>
+    <span class="s1">List&lt;Mahasiswa&gt; listmahasiswa = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_viewdata)</span><span class="s0">;</span>
+        <span class="s1">myrecycle = findViewById(R.id.myRecyclerview)</span><span class="s0">;</span>
+
+        <span class="s1">fetchdata()</span><span class="s0">;</span>
+        <span class="s1">initrecycle()</span><span class="s0">;</span>
+        <span class="s1">setadapter()</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private void </span><span class="s1">fetchdata(){</span>
+        <span class="s1">db = Room.databaseBuilder(getApplicationContext()</span><span class="s0">,</span>
+                <span class="s1">Databaseapp.</span><span class="s0">class, </span><span class="s2">&quot;mahasiswa&quot;</span><span class="s1">).allowMainThreadQueries().build()</span><span class="s0">;</span>
+        <span class="s1">listmahasiswa = db.userDao().getAll()</span><span class="s0">;</span>
+
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s3">0</span><span class="s0">;</span><span class="s1">i&lt;listmahasiswa.size()</span><span class="s0">;</span><span class="s1">i++){</span>
+            <span class="s1">Log.e(</span><span class="s2">&quot;Aplikasi&quot;</span><span class="s0">, </span><span class="s1">listmahasiswa.get(i).getNamamahasiswa()+i)</span><span class="s0">;</span>
+            <span class="s1">Log.e(</span><span class="s2">&quot;Aplikasi&quot;</span><span class="s0">, </span><span class="s1">listmahasiswa.get(i).getNIM()+i)</span><span class="s0">;</span>
+            <span class="s1">Log.e(</span><span class="s2">&quot;Aplikasi&quot;</span><span class="s0">, </span><span class="s1">listmahasiswa.get(i).getJurusan()+i)</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s0">public void </span><span class="s1">initrecycle(){</span>
+        <span class="s1">myrecycle.setHasFixedSize(</span><span class="s0">true</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">LinearLayoutManager llm = </span><span class="s0">new </span><span class="s1">LinearLayoutManager(</span><span class="s0">this</span><span class="s1">)</span><span class="s0">;</span>
+        <span class="s1">llm.setOrientation(LinearLayoutManager.VERTICAL)</span><span class="s0">;</span>
+        <span class="s1">myrecycle.setLayoutManager(llm)</span><span class="s0">;</span>
+        <span class="s1">myadapter = </span><span class="s0">new </span><span class="s1">Recycleviewadapter(</span><span class="s0">this,</span><span class="s1">listmahasiswa)</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private void </span><span class="s1">setadapter(){myrecycle.setAdapter(myadapter)</span><span class="s0">;</span><span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

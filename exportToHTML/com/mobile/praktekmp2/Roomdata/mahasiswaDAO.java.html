@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>mahasiswaDAO.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+mahasiswaDAO.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.mobile.praktekmp2.Roomdata</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.room.Dao</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.room.Delete</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.room.Insert</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">androidx.room.Query</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.mobile.praktekmp2.Entity.Mahasiswa</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s0">;</span>
+
+<span class="s1">@Dao</span>
+<span class="s0">public interface </span><span class="s1">mahasiswaDAO {</span>
+    <span class="s1">@Query(</span><span class="s2">&quot;SELECT * From Mahasiswa&quot;</span><span class="s1">)</span>
+    <span class="s1">List&lt;Mahasiswa&gt; getAll()</span><span class="s0">;</span>
+    <span class="s1">@Query(</span><span class="s2">&quot;SELECT * FROM mahasiswa WHERE ` namamahasiswa` LIKE :nama &quot;</span><span class="s1">)</span>
+    <span class="s1">Mahasiswa findByName(String nama)</span><span class="s0">;</span>
+    <span class="s1">@Insert</span>
+    <span class="s0">void </span><span class="s1">insertAll(Mahasiswa mahasiswa)</span><span class="s0">;</span>
+    <span class="s1">@Delete</span>
+    <span class="s0">public void </span><span class="s1">deleteUsers(Mahasiswa mahasiswa)</span><span class="s0">;</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

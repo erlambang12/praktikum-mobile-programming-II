@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Roomdata.Tambahdata"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="296dp"
+        android:layout_height="276dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/namamaha"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:hint="Nama Mahasiswa" />
+
+        <EditText
+            android:id="@+id/NIM"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:hint="NIM" />
+
+        <EditText
+            android:id="@+id/jurusan"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:hint="Jurusan"
+            tools:layout_editor_absoluteX="180dp"
+            tools:layout_editor_absoluteY="250dp" />
+
+        <Button
+
+            android:id="@+id/butam"
+            android:layout_width="225dp"
+            android:layout_height="wrap_content"
+            android:text="Tambah Data"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

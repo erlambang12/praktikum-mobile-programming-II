@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>Tambahdata.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Tambahdata.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.mobile.praktekmp2.Roomdata</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Intent</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.EditText</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">android.widget.Toast</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">com.mobile.praktekmp2.Entity.Mahasiswa</span><span class="s0">;</span>
+<span class="s0">import </span><span class="s1">com.mobile.praktekmp2.R</span><span class="s0">;</span>
+
+<span class="s0">import static </span><span class="s1">com.mobile.praktekmp2.Roomdata.Myapp.db</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">Tambahdata </span><span class="s0">extends </span><span class="s1">AppCompatActivity {</span>
+    <span class="s1">EditText namamaha</span><span class="s0">;</span>
+    <span class="s1">EditText NIM</span><span class="s0">;</span>
+    <span class="s1">EditText jurusan</span><span class="s0">;</span>
+    <span class="s1">Mahasiswa mahasiswa</span><span class="s0">;</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState)</span><span class="s0">;</span>
+        <span class="s1">setContentView(R.layout.activity_tambahdata)</span><span class="s0">;</span>
+        <span class="s1">namamaha = findViewById(R.id.namamaha)</span><span class="s0">;</span>
+        <span class="s1">NIM = findViewById(R.id.NIM)</span><span class="s0">;</span>
+        <span class="s1">jurusan = findViewById(R.id.jurusan)</span><span class="s0">;</span>
+        <span class="s1">Button tambah = findViewById(R.id.butam)</span><span class="s0">;</span>
+
+        <span class="s1">tambah.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+                <span class="s1">tambahdata()</span><span class="s0">;</span>
+            <span class="s1">}</span>
+        <span class="s1">})</span><span class="s0">;</span>
+    <span class="s1">}</span>
+    <span class="s0">private void </span><span class="s1">tambahdata(){</span>
+        <span class="s0">if</span><span class="s1">(!namamaha.getText().toString().isEmpty()&amp;&amp;!NIM.getText().toString().isEmpty()&amp;&amp;!jurusan.getText().toString().isEmpty()){</span>
+            <span class="s1">mahasiswa = </span><span class="s0">new </span><span class="s1">Mahasiswa()</span><span class="s0">;</span>
+            <span class="s1">mahasiswa.setNamamahasiswa(namamaha.getText().toString())</span><span class="s0">;</span>
+            <span class="s1">mahasiswa.setNIM(NIM.getText().toString())</span><span class="s0">;</span>
+            <span class="s1">mahasiswa.setJurusan(jurusan.getText().toString())</span><span class="s0">;</span>
+            <span class="s1">db.userDao().insertAll(mahasiswa)</span><span class="s0">;</span>
+            <span class="s1">startActivity(</span><span class="s0">new </span><span class="s1">Intent(Tambahdata.</span><span class="s0">this,</span><span class="s1">RoomData.</span><span class="s0">class</span><span class="s1">))</span><span class="s0">;</span>
+        <span class="s1">}</span>
+        <span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">Toast.makeText(</span><span class="s0">this,</span><span class="s2">&quot;yang benar lur !&quot;</span><span class="s0">,</span><span class="s1">Toast.LENGTH_SHORT).show()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
